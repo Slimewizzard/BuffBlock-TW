@@ -11,7 +11,11 @@ local BuffBlockMenuStrings = {
 	[06]= "Arcane Brilliance",
 	[07]= "Blessing of Protection",
 	[08]= "Divine Shield",
-	[09]= "Smart Tank Buff Blocking"
+	[09]= "Blessing of Wisdom",
+	[10]= "Greater Blessing of Wisdom",
+	[11]= "Blessing of Sanctuary",
+	[12]= "Greater Blessing of Sanctuary",
+	[13]= "Smart Tank Buff Blocking"
 }
 
 function BuffBlock_OnLoad()
@@ -37,7 +41,7 @@ function BuffBlock_Init()
 end
 
 function BuffBlock_OnEvent()
-	if (event == "PLAYER_AURAS_CHANGED" or event == "UPDATE_BONUS_ACTIONBAR" and LazyPig_PlayerClass("Druid", "player") or event == "UNIT_INVENTORY_CHANGED") then
+	if (event == "PLAYER_AURAS_CHANGED" or event == "UPDATE_BONUS_ACTIONBAR" and PlayerClass("Druid", "player") or event == "UNIT_INVENTORY_CHANGED") then
 		Kill_Buffs();
 	elseif (event == "VARIABLES_LOADED") then
 		BuffBlock_Init();
@@ -66,7 +70,11 @@ function BuffBlock_GetOption(num)
 	or num == 06 and BUFF_CONFIG[BB_PlayerName].ARCANEBRILLIANCE
 	or num == 07 and BUFF_CONFIG[BB_PlayerName].BLESSINGOFPROTECTION
 	or num == 08 and BUFF_CONFIG[BB_PlayerName].DIVINESHIELD
-	or num == 09 and BUFF_CONFIG[BB_PlayerName].SMARTTANKINGBUFF
+	or num == 09 and BUFF_CONFIG[BB_PlayerName].BLESSINGOFWISDOM
+	or num == 10 and BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFWISDOM
+	or num == 11 and BUFF_CONFIG[BB_PlayerName].BLESSINGOFSANCTUARY
+	or num == 12 and BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFSANCTUARY
+	or num == 13 and BUFF_CONFIG[BB_PlayerName].SMARTTANKINGBUFF
 	or nil then
 		this:SetChecked(true);
 	else
@@ -150,6 +158,38 @@ function BuffBlock_SetOption(num)
 			DEFAULT_CHAT_FRAME:AddMessage("Stopped blocking "..BuffBlockMenuStrings[num]);
 		end
 	elseif num == 09 then
+		if checked then
+			BUFF_CONFIG[BB_PlayerName].BLESSINGOFWISDOM = 1
+			DEFAULT_CHAT_FRAME:AddMessage("Blocking "..BuffBlockMenuStrings[num]);
+		else
+			BUFF_CONFIG[BB_PlayerName].BLESSINGOFWISDOM = nil
+			DEFAULT_CHAT_FRAME:AddMessage("Stopped blocking "..BuffBlockMenuStrings[num]);
+		end
+	elseif num == 10 then
+		if checked then
+			BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFWISDOM = 1
+			DEFAULT_CHAT_FRAME:AddMessage("Blocking "..BuffBlockMenuStrings[num]);
+		else
+			BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFWISDOM = nil
+			DEFAULT_CHAT_FRAME:AddMessage("Stopped blocking "..BuffBlockMenuStrings[num]);
+		end
+	elseif num == 11 then
+		if checked then
+			BUFF_CONFIG[BB_PlayerName].BLESSINGOFSANCTUARY = 1
+			DEFAULT_CHAT_FRAME:AddMessage("Blocking "..BuffBlockMenuStrings[num]);
+		else
+			BUFF_CONFIG[BB_PlayerName].BLESSINGOFSANCTUARY = nil
+			DEFAULT_CHAT_FRAME:AddMessage("Stopped blocking "..BuffBlockMenuStrings[num]);
+		end
+	elseif num == 12 then
+		if checked then
+			BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFSANCTUARY = 1
+			DEFAULT_CHAT_FRAME:AddMessage("Blocking "..BuffBlockMenuStrings[num]);
+		else
+			BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFSANCTUARY = nil
+			DEFAULT_CHAT_FRAME:AddMessage("Stopped blocking "..BuffBlockMenuStrings[num]);
+		end
+	elseif num == 13 then
 		if checked then
 			BUFF_CONFIG[BB_PlayerName].SMARTTANKINGBUFF = 1
 			DEFAULT_CHAT_FRAME:AddMessage("Started "..BuffBlockMenuStrings[num]);
@@ -238,7 +278,31 @@ function Kill_Buffs()
 		if BUFF_CONFIG[BB_PlayerName].DIVINESHIELD then
 			if (string.find(texture,"Spell_Holy_DivineIntervention")) then
 				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[07], 1, 1, 0.5);
+				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[08], 1, 1, 0.5);
+			end
+		end
+		if BUFF_CONFIG[BB_PlayerName].BLESSINGOFWISDOM then
+			if (string.find(texture,"SealOfWisdom")) then
+				CancelPlayerBuff(buffIndex);
+				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[09], 1, 1, 0.5);
+			end
+		end
+		if BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFWISDOM then
+			if (string.find(texture,"GreaterBlessingofWisdom")) then
+				CancelPlayerBuff(buffIndex);
+				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[10], 1, 1, 0.5);
+			end
+		end
+		if BUFF_CONFIG[BB_PlayerName].BLESSINGOFSANCTUARY then
+			if (string.find(texture,"SealOfSacrifice")) then
+				CancelPlayerBuff(buffIndex);
+				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[11], 1, 1, 0.5);
+			end
+		end
+		if BUFF_CONFIG[BB_PlayerName].GREATERBLESSINGOFSANCTUARY then
+			if (string.find(texture,"GreaterBlessingofSanctuary")) then
+				CancelPlayerBuff(buffIndex);
+				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[12], 1, 1, 0.5);
 			end
 		end
 		if BUFF_CONFIG[BB_PlayerName].SMARTTANKINGBUFF then

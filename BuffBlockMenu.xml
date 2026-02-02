@@ -27,7 +27,7 @@
 	<Frame name="BuffBlockOptions" toplevel="true" movable="true" parent="UIParent" enableMouse="true" hidden="true">
 		<TitleRegion setAllPoints="true"/>
 		<Size>
-			<AbsDimension x="225" y="355" />
+			<AbsDimension x="225" y="455" />
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER" />
@@ -291,7 +291,7 @@
 					</OnClick>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="SmartTankingCheckbox" inherits="BuffBlockCheckboxTemplate">
+			<CheckButton name="BlessingOfWisdomCheckbox" inherits="BuffBlockCheckboxTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="DivineShieldCheckbox">
 						<Offset>
@@ -305,6 +305,74 @@
 					</OnShow>
 					<OnClick>
 						BuffBlock_SetOption(09);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="GreaterBlessingOfWisdomCheckbox" inherits="BuffBlockCheckboxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BlessingOfWisdomCheckbox">
+						<Offset>
+							<AbsDimension x="0" y="-25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						BuffBlock_GetOption(10);
+					</OnShow>
+					<OnClick>
+						BuffBlock_SetOption(10);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="BlessingOfSanctuaryCheckbox" inherits="BuffBlockCheckboxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GreaterBlessingOfWisdomCheckbox">
+						<Offset>
+							<AbsDimension x="0" y="-25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						BuffBlock_GetOption(11);
+					</OnShow>
+					<OnClick>
+						BuffBlock_SetOption(11);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="GreaterBlessingOfSanctuaryCheckbox" inherits="BuffBlockCheckboxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="BlessingOfSanctuaryCheckbox">
+						<Offset>
+							<AbsDimension x="0" y="-25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						BuffBlock_GetOption(12);
+					</OnShow>
+					<OnClick>
+						BuffBlock_SetOption(12);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SmartTankingCheckbox" inherits="BuffBlockCheckboxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GreaterBlessingOfSanctuaryCheckbox">
+						<Offset>
+							<AbsDimension x="0" y="-25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						BuffBlock_GetOption(13);
+					</OnShow>
+					<OnClick>
+						BuffBlock_SetOption(13);
 					</OnClick>
 				</Scripts>
 			</CheckButton>
