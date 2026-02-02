@@ -24,8 +24,12 @@ Use /sbb or /buffblock in-game to access the context menu to enable/disable bene
 - Prayer of Spirit
 - Arcane Intellect
 - Arcane Brilliance
-- Divine Shield
 - Blessing of Protection
+- Divine Shield
+- Blessing of Wisdom
+- Greater Blessing of Wisdom
+- Blessing of Sanctuary
+- Greater Blessing of Sanctuary
 
 **Notes**
 
@@ -34,3 +38,7 @@ Smart Tank Buff Blocking: Salvation and Hand of Protection auto removal for each
 - Druid: Bear or Dire Bear Form
 - Paladin: Righteous Fury Active
 - Shaman: with Rockbiter Weapon enchanted
+
+**How It Works**
+
+BuffBlock listens to the `PLAYER_AURAS_CHANGED` event, which fires every time a buff or debuff is applied, removed, or refreshed on your character. When triggered, it scans your current buffs and immediately cancels any that you've selected to block.
